@@ -1,18 +1,20 @@
 version: '3.4'
 
 services:
-    helloworld:
-        image: helloworld
-        build:
-            context: ..
-            dockerfile: HelloWorld/HelloWorld/Dockerfile
-    secondconsoleapp:
-        image: secondconsoleapp
-        build:
-            context: ..
-            dockerfile: SecondConsoleApp/SecondConsoleApp/Dockerfile
-    helloworldworkerservice:
-        image: helloworldworkerservice
-        build:
-            context: ..
-            dockerfile: HelloWorldWorkerService/\HelloWorldWorkerService/Dockerfile
+  helloworld:
+    image: helloworld
+    build:
+      context: .
+      dockerfile: HelloWorld/Dockerfile
+
+  secondconsoleapp:
+    image: secondconsoleapp
+    build:
+      context: .
+      dockerfile: SecondConsoleApp/Dockerfile
+
+  helloworld.workerservice:
+    image: helloworldworkerservice
+    build:
+      context: .
+      dockerfile: HelloWorldWorkerService/Dockerfile
