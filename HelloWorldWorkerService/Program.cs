@@ -1,10 +1,28 @@
 using HelloWorldWorkerService;
+using Serilog;
 
-IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
-    {
-        services.AddHostedService<Worker>();
-    })
-    .Build();
+try
+{
+    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Debug()
+                        .WriteTo.Console()
+                        .WriteTo.Seq("http://seq:5341")
+                        .CreateLogger();
 
-host.Run();
+    IHost host = Host.CreateDefaultBuilder(args)
+                    .ConfigureServices(services =>
+                    {
+                        services.AddHostedService<Worker>();
+                    })
+                    .UseSerilog()
+                    .Build();
+
+    host.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "The worker service crashed!");
+}
+finally{
+    Log.CloseAndFlush();
+}
