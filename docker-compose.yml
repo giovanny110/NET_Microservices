@@ -13,11 +13,17 @@ services:
   #     context: .
   #     dockerfile: SecondConsoleApp/Dockerfile
 
-  helloworld.workerservice:
-    image: helloworldworkerservice
-    build:
+  # helloworld.workerservice:
+  #   image: helloworldworkerservice
+  #   build:
+  #     context: .
+  #     dockerfile: HelloWorldWorkerService/Dockerfile
+
+  bandwidthtester.workerservice:
+    image: bandwidthtesterworkerservice
+    build: 
       context: .
-      dockerfile: HelloWorldWorkerService/Dockerfile
+      dockerfile: BandwidthTester/Dockerfile
 
   seq:
     image: datalust/seq:latest
